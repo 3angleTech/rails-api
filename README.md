@@ -71,20 +71,53 @@ curl http://localhost:3000/api/v1/health-check
 ```
 
 
-## Adding model, migration and seed script
+## Models, migrations and seed script
+
+### Adding a model
+The command below will generate the file for table creation. Choose a comprehensible name for table creation operation (will be a class in the generated file).
+```
+rails generate migration CreateUsers
+```
+Open the newly created file and add columns to the table creation script (see [documentation](https://api.rubyonrails.org/classes/ActiveRecord/Migration.html)). Then run migration for the specific environment:
+```
+rails db:migrate RAILS_ENV=development
+```
+If something goes wrong you can rollback migrations. See bellow rollback-ing one step.
+```
+$ rake db:rollback STEP=1
+```
+Create the class for the model in `app/models`. Example:
+```
+class Movie < ApplicationRecord
+  # validations
+  validates_presence_of :release_date
+end
+```
+
 
 ### Generate migration
-
-Choose a comprehensible name to migration name. The command below will generate a file in `/db/migrate` with the chosen name.
+Choose a comprehensible name to migration name. The command below will generate a file in `/db/migrate` with the chosen name as class name.
 ```
-cd db/migrate/
 rails generate migration AddXColumnToYTable
 ```
 Add migration instructions (see [documentation](https://api.rubyonrails.org/classes/ActiveRecord/Migration.html)), then run migration for specific environment
 ```
 rails db:migrate RAILS_ENV=development
 ```
-If something wrong you can rollback migrations. See bellow rollback-ing one step.
+If something goes wrong you can rollback migrations. See bellow rollback-ing one step.
 ```
 $ rake db:rollback STEP=1
+```
+
+### Create a seed script
+
+Create a file in `db/seeds` folder with the `<seed_number>_<table_to_be_filled>.rb` name format. 
+This file should contain all the record creation needed to seed the database with its default values. Example:
+```
+movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+Character.create(name: 'Luke', movie: movies.first)
+```
+The data can then will be loaded with the following command:
+```
+$ rails db:seed
 ```
