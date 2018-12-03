@@ -1,0 +1,6 @@
+# Ignore logfiles and tempfiles.
+/log/*
+/tmp/*
+
+# Ignore IDE project files
+/.idea/
