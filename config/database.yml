@@ -23,21 +23,10 @@ default: &default
 
 development:
   <<: *default
-  database: railsApi_development
-
-  # The specified database role being used to connect to postgres.
-  # To create additional roles in postgres see `$ createuser --help`.
-  # When left blank, postgres will use the default role. This is
-  # the same name as the operating system user that initialized the database.
-  #username: railsApi
-
-  # The password associated with the postgres role (username).
-  #password:
-
-  # Connect on a TCP socket. Omitted by default since the client uses a
-  # domain socket that doesn't need configuration. Windows does not have
-  # domain sockets, so uncomment these lines.
-  #host: localhost
+  host: localhost
+  database: threeangle_development
+  username: threeangle
+  password:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
@@ -57,7 +46,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: railsApi_test
+  database: threeangle_test
+  username: threeangle
+  password:
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -71,7 +62,7 @@ test:
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+#   DATABASE_URL="3at-railsapi-postgres://myuser:mypass@localhost/somedatabase"
 #
 # You can use this database configuration with:
 #
@@ -80,6 +71,6 @@ test:
 #
 production:
   <<: *default
-  database: railsApi_production
-  username: railsApi
+  database: threeangle_production
+  username: threeangle
   password: <%= ENV['RAILSAPI_DATABASE_PASSWORD'] %>

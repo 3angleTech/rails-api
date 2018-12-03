@@ -15,14 +15,18 @@ The recommended IDE is [Visual Studio Code](https://code.visualstudio.com/).
 
 ### Prepare environment
 
-The application requires a PostgreSql instance which is available via docker when running
-
+The application requires a PostgreSql instance which is available via docker when running.
 ```
-$ docker-compose up -d 3at-postgres
+$ docker-compose up -d 3at-railsapi-postgres
+```
+If you use docker on test or production environment update Docker file to set specific environment variables
+```
+ENV POSTGRES_DB=threeangle_development
+ENV POSTGRES_USER=threeangle
+#ENV POSTGRES_PASSWORD=
 ```
 
 We need to move to the `railsApi` folder in a terminal and run initially
-
 ```
 $ rvm install 2.5.0
 $ rvm use 2.5.0 --default
@@ -67,7 +71,7 @@ curl http://localhost:3000/api/v1/health-check
 ```
 
 
-## Adding 
+## Adding model, migration and seed script
 
 ### Generate migration
 
