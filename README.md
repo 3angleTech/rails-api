@@ -71,7 +71,7 @@ curl http://localhost:3000/api/v1/health-check
 ```
 
 
-## Models, migrations and seed script
+## Models, migrations, seed script, rake cron jobs
 
 ### Adding a model
 The command below will generate the file for table creation. Choose a comprehensible name for table creation operation (will be a class in the generated file).
@@ -110,7 +110,6 @@ $ rake db:rollback STEP=1
 ```
 
 ### Create a seed script
-
 Create a file in `db/seeds` folder with the `<seed_number>_<table_to_be_filled>.rb` name format. 
 This file should contain all the record creation needed to seed the database with its default values. Example:
 ```
@@ -120,4 +119,23 @@ Character.create(name: 'Luke', movie: movies.first)
 The data can then will be loaded with the following command:
 ```
 $ rails db:seed
+```
+
+### Rake task w/ cron jobs
+Create a new rake task file in `lib/tasks` (see `job_example.rake` as template).
+Run the task with the following command (rake namespace:job_name)
+```
+rake threeangle:sample_job
+```
+Configure cron to run the rake job:
+```
+crontab -e
+```
+Add the cron entry for your job
+```
+0 0 * * * cd /path/to/railsapp && /usr/local/bin/rake RAILS_ENV=production threeangle:sample_job
+```
+To find the full path for your rake executable, run:
+```
+which rake
 ```
