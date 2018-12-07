@@ -19,7 +19,7 @@ The application requires a PostgreSql instance which is available via docker whe
 ```
 $ docker-compose up -d 3at-railsapi-postgres
 ```
-If you use docker on test or production environment update Docker file to set specific environment variables
+If you use docker on test or production environments, update the Docker file to set specific environment variables
 ```
 ENV POSTGRES_DB=threeangle_development
 ENV POSTGRES_USER=threeangle
@@ -74,7 +74,7 @@ curl http://localhost:3000/api/v1/health-check
 ## Models, migrations, seed script, rake cron jobs
 
 ### Adding a model
-The command below will generate the file for table creation. Choose a comprehensible name for table creation operation (will be a class in the generated file).
+The command below will generate a migration script for creating the table. Choose a comprehensible name for the table (it will be a class in the generated file).
 ```
 rails generate migration CreateUsers
 ```
@@ -82,7 +82,7 @@ Open the newly created file and add columns to the table creation script (see [d
 ```
 rails db:migrate RAILS_ENV=development
 ```
-If something goes wrong you can rollback migrations. See bellow rollback-ing one step.
+If something goes wrong you can rollback the migration. See bellow rollback-ing one step.
 ```
 $ rake db:rollback STEP=1
 ```
@@ -96,7 +96,7 @@ end
 
 
 ### Generate migration
-Choose a comprehensible name to migration name. The command below will generate a file in `/db/migrate` with the chosen name as class name.
+Choose a comprehensible name for the migration's name. The command below will generate a file in `/db/migrate` with the chosen name as class name.
 ```
 rails generate migration AddXColumnToYTable
 ```
@@ -104,7 +104,7 @@ Add migration instructions (see [documentation](https://api.rubyonrails.org/clas
 ```
 rails db:migrate RAILS_ENV=development
 ```
-If something goes wrong you can rollback migrations. See bellow rollback-ing one step.
+If something goes wrong you can rollback the migration. See bellow rollback-ing one step.
 ```
 $ rake db:rollback STEP=1
 ```
