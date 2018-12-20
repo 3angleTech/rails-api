@@ -72,6 +72,6 @@ test:
 production:
   <<: *default
   host: <%= ENV['RAILSAPI_DATABASE_HOST'] %>
-  database: threeangle_production
+  database: threeangle_development
   username: threeangle
   password: <%= ENV['RAILSAPI_DATABASE_PASSWORD'] %>
