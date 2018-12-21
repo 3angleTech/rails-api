@@ -17,6 +17,7 @@ The recommended IDE is [Visual Studio Code](https://code.visualstudio.com/).
 
 The application requires a PostgreSql instance which is available via docker when running.
 ```
+$ cd docker
 $ docker-compose up -d 3at-railsapi-postgres
 ```
 If you use docker on test or production environments, update the Docker file to set specific environment variables
@@ -69,7 +70,17 @@ Test the server
 ```
 curl http://localhost:3000/api/v1/health-check
 ```
+### Run for production
 
+```
+$ cd docker
+$ docker-compose up
+$ docker-compose build
+```
+Test the server
+```
+curl http://localhost:3000/api/v1/health-check
+```
 
 ## Models, migrations, seed script, rake cron jobs
 
