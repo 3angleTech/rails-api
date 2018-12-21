@@ -8,9 +8,10 @@ ENV RAILS_ENV=production
 ENV RAILSAPI_DATABASE_HOST=3at-railsapi-postgres
 
 COPY ./ ./app
-#COPY ./start-server.sh /
-RUN chmod +x /app/start-server.sh
 
-COPY ./lib/wait-for-it/wait-for-it.sh /
+COPY ./docker/railsapi-server/start-server.sh /
+RUN chmod +x start-server.sh
 
-CMD ["/wait-for-it.sh", "3at-railsapi-postgres:5432", "--", "/app/start-server.sh"]
+COPY ./docker/railsapi-server/lib/wait-for-it/wait-for-it.sh /
+
+CMD ["/wait-for-it.sh", "3at-railsapi-postgres:5432", "--", "/start-server.sh"]

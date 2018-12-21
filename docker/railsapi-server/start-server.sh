@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 cd app
-echo "=== DEBUG ==="
-echo $RAILS_ENV
-echo $RAILSAPI_DATABASE_HOST
 
 echo "Bundling gems"
 bundle install --jobs 8 --retry 3
