@@ -1,7 +1,0 @@
-version: '2'
-services:
-  3at-railsapi-postgres:
-    container_name: 3at-railsapi-postgres
-    build: ./docker/3at-railsapi-postgres
-    ports:
-      - "5432:5432"

@@ -62,7 +62,7 @@ test:
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-#   DATABASE_URL="3at-railsapi-postgres://myuser:mypass@localhost/somedatabase"
+#   DATABASE_URL="railsapi-postgres://myuser:mypass@localhost/somedatabase"
 #
 # You can use this database configuration with:
 #
@@ -71,6 +71,7 @@ test:
 #
 production:
   <<: *default
-  database: threeangle_production
+  host: <%= ENV['RAILSAPI_DATABASE_HOST'] %>
+  database: threeangle_development
   username: threeangle
   password: <%= ENV['RAILSAPI_DATABASE_PASSWORD'] %>

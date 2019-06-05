@@ -1,0 +1,16 @@
+version: '2'
+services:
+  3at-railsapi-postgres:
+    container_name: 3at-railsapi-postgres
+    build: railsapi-postgres
+    ports:
+      - "5432:5432"
+  3at-railsapi-server:
+    container_name: 3at-railsapi-server
+    build:
+      context: ..
+      dockerfile: docker/railsapi-server/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "3at-railsapi-postgres"
